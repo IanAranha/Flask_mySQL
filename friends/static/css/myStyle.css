@@ -1,0 +1,44 @@
+#container{
+    width: 60%;
+    margin: auto;
+    height: 80%;
+    border: 3px solid blue;
+    padding:10px;
+    text-align: center;
+}
+
+#inner_box{
+    align-items: center;
+    overflow-y: scroll;
+    border: 2px solid black;
+    scroll-behavior: auto;
+    margin: auto;
+    height: 150px;
+    width: 400px;
+}
+
+#friends_table{
+    align: center;
+    margin: auto;
+    width: 405px;
+    border:2px solid black;
+}
+#friends_table2{
+    align: center;
+    margin: auto;
+    width: 400px;
+    border:2px solid black;
+    overflow-y: scroll;
+}
+
+#friends_table2 tr:nth-child(even){background-color: #f2f2f2;}
+
+#friends_table2 tr:hover {background-color: #ddd;}
+
+#friends_table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: black;
+  color: white;
+}

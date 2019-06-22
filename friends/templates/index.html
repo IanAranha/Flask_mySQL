@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Friends List</title>
+        <link rel="stylesheet"  type='text/css' href="{{ url_for('static', filename='css/myStyle.css')}}">
+    </head>
+    <body>
+        <div id=container>
+            <h3>These are my friends</h3>
+                <table id='friends_table'>
+                    <thead>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Occupation</th>
+                    </thead>
+                </table>
+                <div id='inner_box'>
+                    <table id='friends_table2'>
+                        {%for friend in friends%}
+                        <tr>
+                                <td>{{friend['first_name']}}</td>
+                                <td>{{friend['last_name']}}</td>
+                                <td>{{friend['occupation']}}</td>
+                        </tr>
+                        {%endfor%}
+                    </table>
+                </div>
+            <h2>Add a friend</h2>
+                <form action='/create_friend' method='post'>
+                    <label for="first_name">First name</label>
+                    <input type="text" name="first_name" placeholder="First name..."><br>
+                    <br>
+                    <label for="last_name">Last name</label>
+                    <input type="text" name="last_name" placeholder="Last name..."><br>
+                    <br>
+                    <label for="occupation">Occupation</label>
+                    <input type="text" name="occupation" placeholder="Occupation..."><br>
+                    <br>
+                    <button type="submit">ADD FRIEND</button>
+                </form>
+        </div>
+    </body>
+</html>
