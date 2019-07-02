@@ -5,13 +5,13 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    mysql = connectToMySQL('friends')
+    mysql = connectToMySQL('friendsdb')
     all_friends = mysql.query_db("SELECT * FROM friends")
     return render_template('index.html', friends=all_friends)
 
 @app.route('/create_friend', methods=['POST'])
 def create_friend():
-    mysql = connectToMySQL('friends')
+    mysql = connectToMySQL('friendsdb')
     query = 'INSERT INTO friends (first_name, last_name, occupation, created_at, updated_at) VALUES (%(first_name)s, %(last_name)s, %(occupation)s, NOW(), NOW())'
     data = {
         'first_name': request.form['first_name'],

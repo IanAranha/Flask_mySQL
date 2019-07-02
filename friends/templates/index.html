@@ -14,31 +14,32 @@
                         <th>Last Name</th>
                         <th>Occupation</th>
                     </thead>
-                </table>
-                <div id='inner_box'>
-                    <table id='friends_table2'>
+                    <tbody>
                         {%for friend in friends%}
                         <tr>
-                                <td>{{friend['first_name']}}</td>
-                                <td>{{friend['last_name']}}</td>
-                                <td>{{friend['occupation']}}</td>
+                            <td>{{friend['first_name']}}</td>
+                            <td>{{friend['last_name']}}</td>
+                            <td>{{friend['occupation']}}</td>
                         </tr>
                         {%endfor%}
-                    </table>
-                </div>
-            <h2>Add a friend</h2>
-                <form action='/create_friend' method='post'>
-                    <label for="first_name">First name</label>
-                    <input type="text" name="first_name" placeholder="First name..."><br>
-                    <br>
-                    <label for="last_name">Last name</label>
-                    <input type="text" name="last_name" placeholder="Last name..."><br>
-                    <br>
-                    <label for="occupation">Occupation</label>
-                    <input type="text" name="occupation" placeholder="Occupation..."><br>
-                    <br>
-                    <button type="submit">ADD FRIEND</button>
-                </form>
+                    </tbody>
+                </table>
+            <div id='submission_form'>
+                <h3>Add a friend</h3>
+                    <form action='/create_friend' method='post'>
+                        <label for="first_name">First name</label>
+                        <input type="text" name="first_name" placeholder="First name..."><br>
+                        <br>
+                        <label for="last_name">Last name</label>
+                        <input type="text" name="last_name" placeholder="Last name..."><br>
+                        <br>
+                        <label for="occupation">Occupation</label>
+                        <input type="text" name="occupation" placeholder="Occupation..."><br>
+                        <br>
+                        <button type="submit">ADD FRIEND</button>
+                    </form>
+            </div>
+
         </div>
     </body>
 </html>
