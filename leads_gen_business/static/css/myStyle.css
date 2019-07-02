@@ -1,0 +1,22 @@
+#container{
+    border: 2px solid blue;
+    width: 75%;
+    margin: auto;
+    height: 350px;
+    padding: 20px;
+}
+
+#update_bar{
+    border: 2px solid blue;
+    padding: 5px;
+    display: block;
+    height: auto;
+}
+
+#display_box{
+    border: 2px solid black;
+    padding: 5px;
+    display: block;
+    height: 300px;
+    overflow-y: scroll;
+}

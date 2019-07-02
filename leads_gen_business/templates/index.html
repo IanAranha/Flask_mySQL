@@ -3,10 +3,25 @@
     <head>
         <meta charset="utf-8">
         <title>LEAD_GEN_BUSINESS</title>
+        <link rel="stylesheet"  type='text/css' href="{{ url_for('static', filename='css/myStyle.css')}}">
     </head>
     <body>
-        <h1>SUCCESS!!!</h1>
-        {{clients.first_name}}
-        {{clients.client_id}}
+        <div id='container'>
+            <div id='update_bar'>
+                <form>
+                    Start Date: <input type="date" name="startdate" />
+                    End Date: <input type= "date" name='enddate' />
+                    <input type="submit" value='UPDATE' />
+                </form>
+            </div>
+            <div id='display_box'>
+                <h3>List all customers and number of leads</h3>
+                {%for client in clients%}
+                    {{client.client_id}}
+                    {{client.first_name}}
+                    {{client.last_name}}<br />
+                {%endfor%}
+            </div>
+        </div>
     </body>
 </html>
