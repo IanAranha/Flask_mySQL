@@ -3,24 +3,76 @@
     <head>
         <meta charset="utf-8">
         <title>LEAD_GEN_BUSINESS</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet"  type='text/css' href="{{ url_for('static', filename='css/myStyle.css')}}">
+        <script>
+            window.onload = function () {
+
+            var options = {
+	            title: {
+		            text: "Customer Leads"
+	                },
+	            subtitles: [{
+		            text: "As of"
+	               }],
+	            animationEnabled: true,
+	            data: [{
+		            type: "pie",
+		            startAngle: 40,
+		            toolTipContent: "<b>{label}</b>: {y}%",
+		            showInLegend: "true",
+		            legendText: "{label}",
+		            indexLabelFontSize: 16,
+		            indexLabel: "{label} - {y}%",
+		            dataPoints: [
+                        { y: 16, label: 'Alexa Schoreder' },
+                        { y: 2, label: 'Alvin Malone' },
+			        ]
+                }]
+            };
+                $("#chartContainer").CanvasJSChart(options);
+            }
+        </script>
     </head>
     <body>
         <div id='container'>
+            <div>
+                <h3>Report Dashboard</h3>
+            </div>
             <div id='update_bar'>
                 <form>
                     Start Date: <input type="date" name="startdate" />
+                    <i class="fa fa-calendar" style="font-size:24px"></i>
                     End Date: <input type= "date" name='enddate' />
+                    <i class="fa fa-calendar" style="font-size:24px"></i>
                     <input type="submit" value='UPDATE' />
                 </form>
             </div>
             <div id='display_box'>
-                <h3>List all customers and number of leads</h3>
-                {%for client in clients%}
-                    {{client.client_id}}
-                    {{client.first_name}}
-                    {{client.last_name}}<br />
-                {%endfor%}
+                <div>
+                    <h3>List all customers and number of leads</h3>
+                </div>
+                <div id='display_table_box'>
+                    <table id='display_table'>
+                        <thead>
+                            <th>Customer Name</th>
+                            <th>Total number of leads</th>
+                        </thead>
+                        <tbody>
+                            {%for client in clients%}
+                                <tr>
+                                    <td>{{client.Name}}</td>
+                                    <td>{{client.Leads}}</td>
+                                </tr>
+                            {%endfor%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <h3>Customers and number of new leads</h3>
+                <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+                <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
             </div>
         </div>
     </body>
