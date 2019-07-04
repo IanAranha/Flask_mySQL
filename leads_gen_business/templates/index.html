@@ -3,33 +3,29 @@
     <head>
         <meta charset="utf-8">
         <title>LEAD_GEN_BUSINESS</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet"  type='text/css' href="{{ url_for('static', filename='css/myStyle.css')}}">
         <script>
             window.onload = function () {
 
-            var options = {
-	            title: {
-		            text: "Customer Leads"
-	                },
-	            subtitles: [{
-		            text: "As of"
-	               }],
-	            animationEnabled: true,
-	            data: [{
-		            type: "pie",
-		            startAngle: 40,
-		            toolTipContent: "<b>{label}</b>: {y}%",
-		            showInLegend: "true",
-		            legendText: "{label}",
-		            indexLabelFontSize: 16,
-		            indexLabel: "{label} - {y}%",
-		            dataPoints: [
-                        { y: 16, label: 'Alexa Schoreder' },
-                        { y: 2, label: 'Alvin Malone' },
-			        ]
-                }]
-            };
+                var options = {
+	                    title: {text: "Customers and number of leads"},
+	                    animationEnabled: true,
+	                    data: [{
+		                        type: "pie",
+		                        startAngle: 40,
+                        		toolTipContent: "<b>{label}</b>: {y}%",
+                        		showInLegend: "true",
+                        		legendText: "{label}",
+                        		indexLabelFontSize: 16,
+                        		indexLabel: "{label} - {y}%",
+                                dataPoints: [
+                                    {%for client in clients%}
+                                        { y: {{client.Leads}}, label: {{client.Name}}}
+                                    {% endfor %}
+                        		]
+
+	                        }]
+                        };
                 $("#chartContainer").CanvasJSChart(options);
             }
         </script>
@@ -69,11 +65,9 @@
                     </table>
                 </div>
             </div>
-            <div>
-                <h3>Customers and number of new leads</h3>
-                <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-                <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
-            </div>
+            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+            <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+            <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
         </div>
     </body>
 </html>
