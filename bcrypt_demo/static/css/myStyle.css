@@ -1,0 +1,19 @@
+#container{
+    border: 2px solid black;
+    width: auto;
+    height: auto;
+}
+
+.formbox{
+    width: 47%;
+    height: 320px;
+    padding: 1%;
+    border: 2px solid red;
+    float: left;
+    align-content: center
+}
+
+#messagebox{
+    border: 2px solid blue;
+    display: inline-block;
+}
