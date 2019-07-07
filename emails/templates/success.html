@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet"  type='text/css' href="{{ url_for('static', filename='css/myStyle.css')}}">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/go_back">GO BACK</a>
+    <div id='messagebox'>
+        <p id='success'>The email address you entered ({{session['email']}}) is a VALID email address! Thank you.</p>
+    </div>
+    <div>
+        <h3>Emails entered</h3>
+        <table id='email_table'>
+            <thead>
+                <th>Emails</th>
+                <th>Date Created</th>
+                <th></th>
+            </thead>
+            <tbody>
+                {%for email in emails%}
+                <tr>
+                    <td>{{email['email']}}</td>
+                    <td>{{email['created_at']}}</td>
+                    <td><a href="">DELETE</a></td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
