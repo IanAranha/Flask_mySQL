@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet"  type='text/css' href="{{ url_for('static', filename='css/myStyle.css')}}">
+    <title>Log-in and Registration</title>
+    <script>
+        function myFunction() {
+          var x = document.getElementById("input_password");
+          if (x.type === "password") {
+            x.type = "text";
+          } else {
+            x.type = "password";
+          }
+        }
+        </script>
+</head>
+<body>
+    <div id='container'>
+        <div class='formbox'>
+            <h3>Registration Form:</h3>
+            <form action='/createUser' method='POST'>
+                <label for='first_name'>First Name:</label>
+                <input type='text' name='first_name' placeholder="Enter first name">
+                {% with errors = get_flashed_messages(category_filter=["first_name"]) %}
+                    {% if errors %}
+                        {% for msg in errors %}
+                           <span class='error'>{{ msg }}</span>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                </br>
+                </br>   
+                <label for='last_name'>Last Name:</label>
+                <input type='text' name='last_name' placeholder="Enter last name">
+                {% with errors = get_flashed_messages(category_filter=["last_name"]) %}
+                    {% if errors %}
+                        {% for msg in errors %}
+                            <span class='error'>{{ msg }}</span>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                </br>
+                </br>
+                <label for='email'>Email:</label>
+                <input type='email' name='email' placeholder="Enter email">
+                {% with errors = get_flashed_messages(category_filter=["email"]) %}
+                    {% if errors %}
+                        {% for msg in errors %}
+                            <span class='error'>{{ msg }}</span>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                </br>
+                </br>
+                <label for='password'>Password:</label>
+                <input type='password' name='password' placeholder="Enter password">
+                {% with errors = get_flashed_messages(category_filter=["password"]) %}
+                    {% if errors %}
+                        {% for msg in errors %}
+                            <span class='error'>{{ msg }}</span>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                </br>
+                </br>
+                <label for='c_password'>Confirm password:</label>
+                <input type='password' name='c_password' placeholder="Confirm password">
+                {% with errors = get_flashed_messages(category_filter=["c_password"]) %}
+                    {% if errors %}
+                        {% for msg in errors %}
+                            <span class='error'>{{ msg }}</span>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                </br>
+                <p name='reg_errors'></p>
+                <input type="submit" value='Click to Register'>
+            </form>
+        </div>
+        <div class='formbox'>
+            <h3>Log-In:</h3>
+            <form action='/log_in' method='POST'>
+                <label for='email'>Email:</label>
+                <input type='email' name='email' placeholder="Enter email">
+                {% with errors = get_flashed_messages(category_filter=["log_email"]) %}
+                    {% if errors %}
+                        {% for msg in errors %}
+                            <span class='error'>{{ msg }}</span>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                </br>
+                </br>
+                <label for='password'>Password:</label>
+                <input type='password' name='password' placeholder="Enter password" id='input_password'>
+                {% with errors = get_flashed_messages(category_filter=["log_password"]) %}
+                    {% if errors %}
+                        {% for msg in errors %}
+                            <span class='error'>{{ msg }}</span>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                </br>
+                </br>
+                <input type="checkbox" onclick="myFunction()">Show Password
+                </br>
+                </br>
+                <input type="submit" value='Click to Log-In'>
+            </form>
+        </div>
+    </div>   
+</body>
+</html>
