@@ -10,7 +10,13 @@
 <body>
     <a href="/go_back">GO BACK</a>
     <div id='messagebox'>
-        <p id='success'>The email address you entered ({{session['email']}}) is a VALID email address! Thank you.</p>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <p class='alert {{category}}'>{{session['email']}} {{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
     </div>
     <div>
         <h3>Emails entered</h3>
@@ -25,7 +31,7 @@
                 <tr>
                     <td>{{email['email']}}</td>
                     <td>{{email['created_at']}}</td>
-                    <td><a href="">DELETE</a></td>
+                    <td><a href="/delete/{{email['id']}}">DELETE</a></td>
                 </tr>
                 {%endfor%}
             </tbody>

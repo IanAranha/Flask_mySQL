@@ -33,6 +33,7 @@ def validate():
              }
         mysql.query_db(query, data)
         session['email'] = request.form['email']
+        flash(' is a valid email and has been added to data base')
         return redirect('/success')
 
 @app.route('/success')
@@ -46,6 +47,16 @@ def go_back():
     session.pop('email', None)
     return redirect('/')
 
+@app.route('/delete/<id>')
+def delete(id):
+    mysql = connectToMySQL('emails')
+    query = 'DELETE FROM emails WHERE id = %(id)s'
+    data = {
+        'id': id
+    }
+    mysql.query_db(query, data)
+    flash(' has been deleted from database')
+    return redirect('/success')
 
 if __name__ == "__main__":
     app.run(debug=True)
