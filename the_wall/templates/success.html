@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The Wall</title>
+</head>
+<body>
+    <h1>Welcome {{session['first_name']}}</h1>
+    <div>
+        <h3>Here are your messages:</h3>
+            {%for message in myMessages%}
+                {{message.first_name}}
+                {{message.message_text}}
+            {%endfor%}
+        <h3>Send a message:</h3>
+        {%for user in all_other_users%}
+        <form action='/add_message' method='POST'>
+            {{user['first_name']}}
+            <input type="hidden" name="message_recipant" value="{{user['id']}}">
+            <textarea rows="2" cols="30" name='message'></textarea>
+            <input type="submit" value = "SEND">
+            {% with errors = get_flashed_messages(category_filter=["first_name"]) %}
+                {% if errors %}
+                    {% for msg in errors %}
+                        <span class='error'>{{ msg }}</span>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </form>
+        {%endfor%}
+    </div>
+    <form action='/log_out' method='POST'>
+        <input type="submit" value='LOG OUT'>
+    </form>
+</body>
+</html>
