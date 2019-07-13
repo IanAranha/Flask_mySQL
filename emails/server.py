@@ -38,9 +38,13 @@ def validate():
 
 @app.route('/success')
 def success():
-    mysql = connectToMySQL('emails')
-    all_emails = mysql.query_db('SELECT * FROM emails')
-    return render_template('success.html', emails=all_emails)
+    if 'email' not in session:
+        flash('Illegal hack!')
+        return redirect('/')
+    else:
+        mysql = connectToMySQL('emails')
+        all_emails = mysql.query_db('SELECT * FROM emails')
+        return render_template('success.html', emails=all_emails)
 
 @app.route('/go_back')
 def go_back():

@@ -102,8 +102,12 @@ def login():
 
 @app.route('/success')
 def success():
-    flash('Registration successful. Log-in to proceed', 'log_email')
-    return redirect('/')
+    if 'email' not in session:
+        ip_add = request.remote_addr
+        return render_template('hack.html', ip=ip_add)
+    else:
+        flash('Registration successful. Log-in to proceed', 'log_email')
+        return redirect('/')
 
 
 @app.route('/login_success')
@@ -118,7 +122,6 @@ def log_in():
              'user' : session['user_id']
          }
         all_messages = mysql.query_db(queryA, dataA)
-        print (all_messages)
 
         mysql = connectToMySQL('the_wall')
         queryB = "SELECT * FROM users WHERE users.email != %(email)s;"
@@ -126,7 +129,24 @@ def log_in():
             'email' : session['email']
         }
         all_other_users = mysql.query_db(queryB, dataB)
-        return render_template('success.html',myMessages=all_messages, all_other_users=all_other_users)
+
+        mysql = connectToMySQL('the_wall')
+        queryC = "SELECT COUNT(*) FROM messages WHERE written_for = %(user)s"
+        dataC = {
+             'user' : session['user_id']
+         }
+        messageCount = mysql.query_db(queryC, dataC)
+        counter = messageCount[0]['COUNT(*)']
+        return render_template('success.html',myMessages=all_messages, all_other_users=all_other_users, messageCount=counter)
+
+@app.route('/delete', methods=['POST', "GET"])
+def delete():
+    if request.method=='POST':
+        return redirect('/login_success')
+    else:
+        print("HERE")
+        return redirect('/login_success')
+    
 
 @app.route('/log_out' , methods=['POST'])
 def log_out():
@@ -139,8 +159,6 @@ def add_message():
     if len(request.form['message']) < 1:
         flash('You must include a message', 'message')
     mysql = connectToMySQL('the_wall')
-    print(request.form['message'])
-    print(request.form['message_recipant'])
     query = 'INSERT INTO messages (message_text, written_for, created_at, updated_at, written_by) VALUES (%(message)s, %(written_for)s, NOW(),NOW(), %(written_by)s)'
     data = {
         'message' : request.form['message'],

@@ -2,16 +2,47 @@
     border: 2px solid black;
     width: auto;
     height: auto;
-    font-size: 18px;
+}
+#container2{
+    border: 2px solid red;
+    width: auto;
+    height: auto;
+}
+.menubar{
+    border: 2px solid black;
+    height: 10%;
+    padding-left: 10px;
+}
+.logo{
+    width: 55%;
+    border: 2px solid blue;
+    display: inline-block;
+}
+.menu_right_floater{
+    align-content: center;
+    float: right;
+}
+
+.greeting{
+    display: inline-block;
+    width: 300px;
+    margin-right: 20px;
+    margin-right: 10px
+}
+
+.logout{
+    display: inline-block;
+    width: 70px;
+    border: 2px solid green;
+    margin-right: 10px
 }
 
 .formbox{
-    width: 47%;
+    width: 48%;
     height: 320px;
-    padding: 1%;
+    padding-left: 10px;
     border: 2px solid red;
     float: left;
-    align-content: center
 }
 
 #messagebox{

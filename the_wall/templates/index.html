@@ -19,6 +19,18 @@
 </head>
 <body>
     <div id='container'>
+        <div class='menubar'>
+            <div class='logo'>
+                <h3>CodingDojo Wall </h3>
+            </div>
+            <div class=greeting>
+            </div>
+            <div class='logout'>
+                <form  action='/log_out' method='POST'>
+                    <input type="submit" value='LOG OUT'>
+                </form>
+            </div>    
+        </div>
         <div class='formbox'>
             <h3>Registration Form:</h3>
             <form action='/createUser' method='POST'>

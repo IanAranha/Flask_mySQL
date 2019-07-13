@@ -4,35 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet"  type='text/css' href="{{ url_for('static', filename='css/myStyle.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>The Wall</title>
 </head>
 <body>
-    <h1>Welcome {{session['first_name']}}</h1>
-    <div>
-        <h3>Here are your messages:</h3>
-            {%for message in myMessages%}
-                {{message.first_name}}
-                {{message.message_text}}
+    <div id='container2'>
+        <div class='menubar'>
+            <div class='logo'>
+                <h3>CodingDojo Wall </h3>
+            </div>
+            <div class='menu_right_floater'>
+                <div class='greeting'>
+                    <h4> Welcome {{session['first_name']}}</h4>
+                </div>
+                <div class='logout'>
+                    <form  action='/log_out' method='POST'>
+                        <input type="submit" value='LOG OUT'>
+                    </form>
+                </div>    
+            </div>  
+        </div>
+        <div class='formbox'>
+            <h3>{{messageCount}} message(s) for you.
+            </h3>
+                {%for message in myMessages%}
+                    {{message.first_name}} said:<br>
+                    {{message.message_text}}     
+                    <a href="{{ url_for('delete') }}"'><i class="fa fa-trash"> DELETE</i></a><br>
+                    <br>
+                {%endfor%}
+        </div>
+        <div class='formbox'>
+            <h3>Send a message to:</h3>
+            {%for user in all_other_users%}
+            <form action='/add_message' method='POST'>
+                {{user['first_name']}}
+                <input type="hidden" name="message_recipant" value="{{user['id']}}">
+                <textarea rows="2" cols="30" name='message'></textarea>
+                <input type="submit" value = "SEND">
+                {% with errors = get_flashed_messages(category_filter=["message"]) %}
+                    {% if errors %}
+                        {% for msg in errors %}
+                            <span class='error'>{{ msg }}</span>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </form>
             {%endfor%}
-        <h3>Send a message:</h3>
-        {%for user in all_other_users%}
-        <form action='/add_message' method='POST'>
-            {{user['first_name']}}
-            <input type="hidden" name="message_recipant" value="{{user['id']}}">
-            <textarea rows="2" cols="30" name='message'></textarea>
-            <input type="submit" value = "SEND">
-            {% with errors = get_flashed_messages(category_filter=["first_name"]) %}
-                {% if errors %}
-                    {% for msg in errors %}
-                        <span class='error'>{{ msg }}</span>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-        </form>
-        {%endfor%}
-    </div>
-    <form action='/log_out' method='POST'>
-        <input type="submit" value='LOG OUT'>
-    </form>
+        </div> 
+    </div> 
 </body>
 </html>
