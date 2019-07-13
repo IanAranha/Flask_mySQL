@@ -137,14 +137,28 @@ def log_in():
          }
         messageCount = mysql.query_db(queryC, dataC)
         counter = messageCount[0]['COUNT(*)']
-        return render_template('success.html',myMessages=all_messages, all_other_users=all_other_users, messageCount=counter)
 
-@app.route('/delete', methods=['POST', "GET"])
-def delete():
-    if request.method=='POST':
-        return redirect('/login_success')
+        mysql = connectToMySQL('the_wall')
+        queryD = "SELECT COUNT(*) FROM messages WHERE messages.written_by = %(user)s"
+        dataD = {
+             'user' : session['user_id']
+         }
+        messageCount = mysql.query_db(queryD, dataD)
+        counter2 = messageCount[0]['COUNT(*)']
+        return render_template('success.html',myMessages=all_messages, all_other_users=all_other_users, messageCount=counter,sent_messages=counter2 )
+
+@app.route('/delete/<id>', methods=['GET','POST'])
+def delete(id):
+    if 'email' not in session:
+        ip_add = request.remote_addr
+        return render_template('hack.html', ip=ip_add)
     else:
-        print("HERE")
+        mysql = connectToMySQL('the_wall')
+        query='DELETE FROM messages WHERE messages.message_id = %(message_id)s'
+        data = {
+            'message_id' : id
+        }
+        mysql.query_db(query, data)
         return redirect('/login_success')
     
 

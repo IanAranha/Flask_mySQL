@@ -30,13 +30,15 @@
             </h3>
                 {%for message in myMessages%}
                     {{message.first_name}} said:<br>
-                    {{message.message_text}}     
-                    <a href="{{ url_for('delete') }}"'><i class="fa fa-trash"> DELETE</i></a><br>
+                    {{message.message_text}}
+                    <a href="/delete/{{message['message_id']}}"><i class="fa fa-trash"></i></a>
+                    <br> 
                     <br>
                 {%endfor%}
         </div>
         <div class='formbox'>
             <h3>Send a message to:</h3>
+            <p>You have sent {{sent_messages}} messages so far</p>
             {%for user in all_other_users%}
             <form action='/add_message' method='POST'>
                 {{user['first_name']}}
