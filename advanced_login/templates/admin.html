@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Advanced Login-Registration</title>
+</head>
+<body>
+    This is the admin page HI {{session['first_name']}}
+    <a href='/log_off'>LOG OFF</a><br>
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            {%for user in users%}
+            <tr>
+                <td>{{user.id}}</td>
+                <td>{{user.first_name}} {{user.last_name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{status}}</td>
+                <td><button>REMOVE</button> <button>Remove Admin Access</button></td>
+                <td></td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+</body>
+</html>
