@@ -117,7 +117,7 @@ def log_in():
         return render_template('hack.html', ip=ip_add)
     else:
         mysql = connectToMySQL('the_wall')
-        queryA = "SELECT * FROM messages JOIN users ON messages.written_by = users.id WHERE messages.written_for = %(user)s"
+        queryA = "SELECT * FROM messages JOIN users ON messages.written_by = users.id WHERE messages.written_for = %(user)s ORDER BY messages.created_at DESC"
         dataA = {
              'user' : session['user_id']
          }
@@ -145,7 +145,11 @@ def log_in():
          }
         messageCount = mysql.query_db(queryD, dataD)
         counter2 = messageCount[0]['COUNT(*)']
-        return render_template('success.html',myMessages=all_messages, all_other_users=all_other_users, messageCount=counter,sent_messages=counter2 )
+
+    
+        return render_template('success.html',myMessages=all_messages, all_other_users=all_other_users, messageCount=counter,sent_messages=counter2)
+
+
 
 @app.route('/delete/<id>', methods=['GET','POST'])
 def delete(id):

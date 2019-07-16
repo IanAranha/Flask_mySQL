@@ -42,7 +42,13 @@
     height: 320px;
     padding-left: 10px;
     border: 2px solid red;
-    float: left;
+    float: left; 
+}
+#message_container{
+    height: 250px;
+    width: 95%;
+    overflow: scroll;
+    border: 2px solid green;
 }
 
 #messagebox{

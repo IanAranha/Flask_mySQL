@@ -170,7 +170,7 @@ def userRegistered():
 @app.route('/login_success')
 def userLogin():
     #This method does several things
-    #checks that the user has successfully logged in and if not...redirects them back to page
+    #checks that the user has successfully logged in and if not,redirects them to the hack page
     if 'email' not in session:
         return redirect('/hack')
     # checks the user's admin level and directs to the appropriate page
@@ -181,9 +181,10 @@ def userLogin():
 
 
 
-
 @app.route('/admin')
 def admin():
+    #This method checks that the user is legally registered and then proceeds to populate the 
+    #html with data pulled from DB
     if 'user_level' not in session:
         return redirect('/hack')
     elif session['user_level'] != 9:
@@ -192,10 +193,10 @@ def admin():
         #Connect to the DB
         mysql = connectToMySQL('advanced_login')
 
-        #Create a query to grab all the users from the db
+        #Create a query to grab all the user data from the db
         result = mysql.query_db('SELECT * FROM users')
-        print (result)
     
+        #pass all the user data to the html page
         return render_template('admin.html', users=result)
 
 
@@ -203,12 +204,45 @@ def admin():
 
 @app.route('/user')
 def user():
+    #This method directs normal users to the appropriate page
     if 'email' not in session:
         return redirect('/hack')
     else:
         return render_template('user.html')
 
 
+
+@app.route('/remove/<id>', methods=['POST'])
+def remove(id):
+    #When the remove button is clicked, the user is removed from the data-base.
+    #Connect to the DB
+    mysql = connectToMySQL('advanced_login')
+
+    #Create a query to delete the user data from the db
+    query = 'DELETE from users WHERE id = %(id)s'
+    data = {
+        'id' : id
+    }
+    mysql.query_db(query,data)
+    
+    #pass all the user data to the html page   
+    return redirect('/admin')
+
+
+
+@app.route('/change_access/<id>', methods=['POST'])
+def change_access(id):
+    #Connect to the DB
+    mysql = connectToMySQL('advanced_login')
+
+    #Create a query to delete the user data from the db
+    query = 'UPDATE users SET user_level = 1 WHERE id = %(id)s'
+    data = {
+        'id' : id
+    }
+    mysql.query_db(query,data)
+
+    return redirect('/admin')
 
 
 @app.route('/hack')

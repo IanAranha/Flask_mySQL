@@ -26,15 +26,18 @@
             </div>  
         </div>
         <div class='formbox'>
-            <h3>{{messageCount}} message(s) for you.
-            </h3>
+            <div>
+                <h3>{{messageCount}} message(s) for you.</h3>
+            </div>
+            <div id='message_container'>
                 {%for message in myMessages%}
-                    {{message.first_name}} said:<br>
+                    {{message.first_name}} said ({{time}} days ago):<br>
                     {{message.message_text}}
                     <a href="/delete/{{message['message_id']}}"><i class="fa fa-trash"></i></a>
                     <br> 
                     <br>
                 {%endfor%}
+            </div>
         </div>
         <div class='formbox'>
             <h3>Send a message to:</h3>

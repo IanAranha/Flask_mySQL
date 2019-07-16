@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Advanced Login-Registration</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{{
+        url_for('static', filename='jquery.js') }}">\x3C/script>')
+    </script>
+      
+</script> 
 </head>
 <body>
     This is the admin page HI {{session['first_name']}}
@@ -23,9 +29,15 @@
                 <td>{{user.id}}</td>
                 <td>{{user.first_name}} {{user.last_name}}</td>
                 <td>{{user.email}}</td>
-                <td>{{status}}</td>
-                <td><button>REMOVE</button> <button>Remove Admin Access</button></td>
-                <td></td>
+                <td>{{user.user_level}}</td>
+                <td><form action='/remove/{{user.id}}' method="POST">
+                        <button>Remove user</button>
+                    </form>
+                    
+                    <form action='/change_access/{{user.id}}' method="POST">
+                        <button>Remove admin access</button>
+                    </form>
+                </td>
             </tr>
             {%endfor%}
         </tbody>
