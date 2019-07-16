@@ -29,14 +29,19 @@
                 <td>{{user.id}}</td>
                 <td>{{user.first_name}} {{user.last_name}}</td>
                 <td>{{user.email}}</td>
-                <td>{{user.user_level}}</td>
+                <td>{%if user.user_level == 9%}
+                        <p>Admin</p>
+                    {%else%}
+                        <p>Normal user</p>
+                    {%endif%}
                 <td><form action='/remove/{{user.id}}' method="POST">
                         <button>Remove user</button>
                     </form>
-                    
+                    {%if user.user_level == 9 %}
                     <form action='/change_access/{{user.id}}' method="POST">
                         <button>Remove admin access</button>
                     </form>
+                    {% endif %}
                 </td>
             </tr>
             {%endfor%}
