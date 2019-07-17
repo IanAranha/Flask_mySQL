@@ -5,10 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Advanced Login-Registration</title>
+    <link rel="stylesheet"  type='text/css' href="{{ url_for('static', filename='css/myStyle.css')}}">
 </head>
 <body>
-    <h2>Advanced Login</h2>
-    <div>
+    <div class='navbar'>
+        <div>
+            <h2>Advanced Log-in</h2>
+        </div>
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+    <div class='login_reg_form'>
         <h3>Login</h3>
         <form action='/log_in' method='POST'>
             <label for='log_email'>Email:</label>
@@ -34,10 +48,10 @@
             <br>
             <br>
             <br>
-            <input type='submit' value='Click to login'>
+            <input class='button' type='submit' value='Click to login'>
         </form>
     </div>
-    <div>
+    <div class='login_reg_form'>
         <h3>Registration</h3>
         <!--  This is the Registration form  -->
         <form action='/createUser' method='POST'>
@@ -109,7 +123,7 @@
             {% endwith %}
             <br>
             <br>
-            <input type='submit' value='Click to register'>
+            <input class= 'button' type='submit' value='Click to register'>
         </form>
     </div>
 </body>

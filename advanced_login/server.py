@@ -230,8 +230,8 @@ def remove(id):
 
 
 
-@app.route('/change_access/<id>', methods=['POST'])
-def change_access(id):
+@app.route('/remove_admin/<id>', methods=['POST'])
+def remove_admin(id):
     #Connect to the DB
     mysql = connectToMySQL('advanced_login')
 
@@ -244,6 +244,19 @@ def change_access(id):
 
     return redirect('/admin')
 
+@app.route('/make_admin/<id>', methods=['POST'])
+def make_admin(id):
+    #Connect to the DB
+    mysql = connectToMySQL('advanced_login')
+
+    #Create a query to delete the user data from the db
+    query = 'UPDATE users SET user_level = 9 WHERE id = %(id)s'
+    data = {
+        'id' : id
+    }
+    mysql.query_db(query,data)
+
+    return redirect('/admin')
 
 @app.route('/hack')
 def hack():

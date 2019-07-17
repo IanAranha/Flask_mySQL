@@ -1,0 +1,72 @@
+.navbar{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    border: 2px solid red;
+}
+.navbar div{
+    float: left;
+    padding: 12px;
+    width: 22%;
+    text-align: center;
+    border: 2px solid black;
+}
+
+.login_reg_form{
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding-left: 8%;
+    padding-bottom: 2%;
+    align-content: center;
+    border: 2px solid black;;
+}
+
+.button{
+    background-color: maroon;
+    color: wheat;
+    margin-left: 15%;
+    font-size: 18px;
+}
+
+table {
+    margin-top: 5%;
+    margin-left: 5%;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+  }
+
+  th{
+      background-color: green;
+      color: #dddddd;
+      border: 2px double black;
+      text-align: center;
+      padding: 4px;
+      font-size: 22px;
+  }
+  
+  td{
+    border: 1px solid gray;
+    text-align: center;
+    padding: 4px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+  .action{
+    background-color: red;
+    color: wheat;
+    margin-left: 15%;
+    font-size: 18px;
+  }
+
+  .action2{
+    background-color: green;
+    color: wheat;
+    margin-left: 15%;
+    font-size: 18px;
+  }
