@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Users</title>
+    <link rel="stylesheet"  type='text/css' href="{{ url_for('static', filename='css/myStyle.css')}}">     
+</head>
+<body>
+    <div class='container'>
+        {%for user in user_info%}
+            <h1>User {{user.id}}</h1> 
+            <p>Full name: {{user.first_name}} {{user.last_name}}</p>
+            <p>Email: {{user.email}}</p>
+            <p>Created on: {{user.created_at.strftime('%B %d, %Y')}}</p>    
+        <br>
+        <p><a href="/users/{{user.id}}/edit">EDIT</a> | <a href="/users/{{user.id}}/delete">DELETE</a> | <a href="/users">GO BACK</a</p>
+        {%endfor%}
+    </div>
+    
+</body>
+</html>

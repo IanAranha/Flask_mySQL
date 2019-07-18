@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Users</title>
+    <link rel="stylesheet"  type='text/css' href="{{ url_for('static', filename='css/myStyle.css')}}">     
+</head>
+<body>
+    <div class='container'>
+        <h1>Users</h1>
+        <table>
+            <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Created on</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                {%for user in users%}
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.first_name}} {{user.last_name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.created_at.strftime('%B %d, %Y')}}</td>
+                    <td><a href="/users/{{user.id}}">SHOW</a> | <a href="/users/{{user.id}}/edit">EDIT</a> | <a href="/users/{{user.id}}/delete">DELETE</a></td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+        <a href='/users/new'>Add a user</a>
+    </div>
+   
+</body>
+</html>
