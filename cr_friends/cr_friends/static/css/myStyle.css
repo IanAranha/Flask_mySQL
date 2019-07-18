@@ -1,0 +1,24 @@
+#container{
+    text-align: center;
+    margin: auto;
+    width: 60%;
+    height: 80%;
+    border: 3px solid #73AD21;
+    padding: 10px;
+}
+#add_friend_box{
+    border-top: 2px solid black;
+
+}
+#inner_box{
+    margin: auto;
+    width: 8S0%;
+    height: 400px;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+#box{
+    text-align: center;
+    border-bottom: 3px solid black
+}
