@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Advanced Login-Registration</title>
+    <link rel="stylesheet"  type='text/css' href="{{ url_for('static', filename='css/myStyle.css')}}">
+</head>
+<body>
+    <div class='navbar'>
+        <div>
+            <h2>Advanced Log-in</h2>
+        </div>
+        <div>
+            <h2>Normal user</h2>
+        </div>
+        <div>
+        </div>
+        <div>
+            <a href='/log_off'>LOG OFF</a>
+        </div>
+    </div>
+    <div>
+        <h2>Hello {{session['first_name']}}, you are just a normal user. </h2>
+        <p>This page is under construction. Please stay tuned in for further additions and features</p>
+    </div>
+</body>
+</html>

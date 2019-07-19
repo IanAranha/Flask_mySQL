@@ -1,0 +1,20 @@
+.alert.error{
+    color: red;
+    font-weight: bold;
+}
+
+#success{
+    color: green;
+    font-weight: bold;
+}
+
+#email_table{
+    table-layout: fixed;
+    width: 100%;
+    border: 1px solid black;
+}
+
+th, td{
+    border: 1px solid black;
+    padding: 5px;
+}

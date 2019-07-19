@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Advanced Login-Registration</title>
+    <link rel="stylesheet"  type='text/css' href="{{ url_for('static', filename='css/myStyle.css')}}">     
+</script> 
+</head>
+<body>
+    <div class='navbar'>
+        <div>
+            <h2>Advanced Log-in</h2>
+        </div>
+        <div>
+            <h2>Admin page</h2>
+        </div>
+        <div>
+           <h3>Welcome {{session['first_name']}}</h3>
+        </div>
+        <div>
+            <a href='/log_off'>LOG OFF</a>
+        </div>
+    </div>
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            {%for user in users%}
+            <tr>
+                <td>{{user.id}}</td>
+                <td>{{user.first_name}} {{user.last_name}}</td>
+                <td>{{user.email}}</td>
+                <td>{%if user.user_level == 9%}
+                        <p>Admin</p>
+                    {%else%}
+                        <p>Normal user</p>
+                    {%endif%}
+                <td><form action='/remove/{{user.id}}' method="POST">
+                        <button class='action'>Remove user</button>
+                    </form>
+                    {%if user.user_level == 9 %}
+                    <form action='/remove_admin/{{user.id}}' method="POST">
+                        <button class='action'>Remove admin access</button>
+                    </form>
+                    {%else%}
+                    <form action='/make_admin/{{user.id}}' method="POST">
+                        <button class='action2'>Make admin</button>
+                    </form>
+                    
+                    {% endif %}
+                </td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+</body>
+</html>
