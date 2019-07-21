@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Recipe</title>
+    <link rel="stylesheet"  type='text/css' href="{{ url_for('static', filename='css/myStyle.css')}}">
+</head>
+<body>
+    <div class='navbar'>
+            <div>
+                Welcome {{session['username']}}!
+            </div>
+            <div>
+                <a href="/dashboard">DASHBOARD</a>
+            </div>
+            <div>
+                <a href="/review">REVIEW</a>
+            </div>
+            <div>
+                <a href="/logout">LOG OUT</a>
+            </div>
+    </div>
+    <div id= 'create_box'>
+        <p id='create_header'>Create a recipe:</p>
+        <form action='/createRecipe' method='POST'>
+            <label for='name'>Recipe Name:</label><br>
+            <input type="text" name='name' placeholder="Enter recipe name" size='52'>
+            {% with errors = get_flashed_messages(category_filter=["name"]) %}
+                {% if errors %}
+                    {% for msg in errors %}
+                        <span class='error'>{{ msg }}</span>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <br>
+            <br>
+            <label for='description'>Description:</label><br>
+            <input type='text' name ='description' placeholder='Enter description' size='52'>
+            {% with errors = get_flashed_messages(category_filter=["description"]) %}
+                {% if errors %}
+                    {% for msg in errors %}
+                        <span class='error'>{{ msg }}</span>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <br>
+            <br>
+            <label for='instructions'>Instructions:</label><br>
+            <textarea rows='4' cols='50' name='instructions' placeholder="Enter instructions"></textarea>
+            {% with errors = get_flashed_messages(category_filter=["instructions"]) %}
+                {% if errors %}
+                    {% for msg in errors %}
+                        <span class='error'>{{ msg }}</span>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <br>
+            <br>
+            <p>Under 30 min to prepare?</p>
+            <div>
+                <input type="radio" name="time" value="Yes" checked>
+                <label for="Yes">Yes</label>
+            </div>
+            <div>
+                <input type="radio" name="time" value="No">
+                <label for="No">No</label>
+            </div>
+            <input class='button' type='submit' value='Click to create recipe'>
+            <br>
+            <br>
+            <input type="hidden" name='message'>
+            {% with errors = get_flashed_messages(category_filter=["message"]) %}
+                {% if errors %}
+                    {% for msg in errors %}
+                        <span class='error'>{{ msg }}</span>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </form>
+    </div>
+   
+</body>
+</html>

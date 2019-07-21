@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Recipes</title>
+    <link rel="stylesheet"  type='text/css' href="{{ url_for('static', filename='css/myStyle.css')}}">
+</head>
+<body>
+    <div class='navbar'>
+        <div>
+            Welcome {{session['username']}}!
+        </div>
+        <div>
+           
+        </div>
+        <div>
+            
+        </div>
+        <div>
+            <a href="/logout">LOG OUT</a>
+        </div>
+    </div>
+    <div id='dashboard'>
+        <div id='button_create'>
+            <a href='/create'>
+                <div>
+                    <p id="create_tag">CREATE</p>
+                </div>
+                <div>
+                    <p>Click here to create new recipe</p>
+                </div>
+            </a>
+        </div>
+        <div id='button_review'>
+                <a href='/review'>
+                    <div>
+                        <p id='review_tag'>REVIEW</p>
+                    </div>
+                    <div>
+                        <p>Click here to review all recipes</p>
+                    </div>
+                </a>
+            </div>
+    </div>
+</body>
+</html>
