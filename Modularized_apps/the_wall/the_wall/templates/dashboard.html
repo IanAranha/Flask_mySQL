@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Recipes</title>
+    <link rel="stylesheet"  type='text/css' href="{{ url_for('static', filename='css/myStyle.css')}}">
+</head>
+<body>
+    <div class='navbar'>
+        <div>
+            <h4>Coding Dojo Wall</h4>
+        </div>
+        <div>
+        </div>
+        <div>
+            Welcome {{session['first_name']}}!
+        </div>
+        <div>
+            <a href="/logout">LOG OUT</a>
+        </div>
+    </div>
+    <div id='dashboard'> 
+        <div id='post_box'>
+            <form action='/post_message' method='POST'>
+                <label for='message'>Post a message:</label><br>
+                <textarea id='textareaA'rows='5' cols='180' name='message'></textarea>
+                {% with errors = get_flashed_messages(category_filter=["message"]) %}
+                    {% if errors %}
+                        {% for msg in errors %}
+                            <span class='error'>{{ msg }}</span>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <input id='message_button' type='submit' value='Click to post'>
+            </form>
+        </div>
+        <div>
+            <h4>All messages:</h4>
+        </div>
+        <div id='message_box'>
+        {%for message in messages%}
+            <div id='sub_message_box'>
+                <div>
+                    <p>{{message.first_name}} {{message.last_name}} - {{message.created_at.strftime('%B %d, %Y - %I:%M %p')}}</p>
+                </div>
+                <div id='sub_message_box2'>
+                    <p>{{message.message}}</p>
+                </div>
+            </div>
+            <div id='comment_box'>
+                {% for comment in comments %}
+                    {% if comment.message_id == message.id %}
+                        <h5>{{comment.first_name}} {{comment.last_name}} - {{comment.created_at.strftime('%B %d, %Y - %I:%M %p')}}</h5>
+                        <div id='sub_comment_box'>
+                            <p>{{comment.comment}}</p>
+                        </div>   
+                    {% endif %}
+                {% endfor %}
+                <div id='comment_form'>
+                    <form action='/post_comment/{{message.id}}' method='POST'>
+                        <label for='comment'>Post a message:</label><br>
+                        <textarea rows='2' cols='80' name='comment'></textarea>
+                        <input id='comment_button' type='submit' value='Click to comment'>
+                    </form>
+                </div>
+                
+            </div>
+        {%endfor%}
+        </div>
+    </div>
+</body>
+</html>
