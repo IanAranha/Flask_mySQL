@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Books</title>
+    <link rel="stylesheet"  type='text/css' href="{{ url_for('static', filename='css/myStyle.css')}}">
+</head>
+<body>
+    <div class='navbar'>
+        <div>
+            <h4>Coding Dojo Books</h4>
+        </div>
+        <div>
+        </div>
+        <div>
+           <a href='/books'>Home</a>
+        </div>
+        <div>
+            <a href="/logout">LOG OUT</a>
+        </div>
+    </div>
+        {%for result in results%}
+            <h4>{{result.title}}</h4>
+            <h5>{{result.author}}</h5>
+        
+    </div>
+    <h3>Reviews:</h3>
+    <div>
+        {%for review in reviews%}
+            <p>Ratings: </p>{{review.rating}}
+            <p><a href='/users/{{review.id}}'>{{review.first_name}}</a> says {{review.review}}</p>
+            <p>Posted on {{review.created_at}}</p>
+        {%endfor%}
+    </div>
+    <div>
+        <h3>Add a review:</h3>
+            <form action='/addreview' method='POST'>
+                <div>
+                    <input type="hidden" name='title' value={{result.title}}>
+                    <input type='hidden' name='book_id' value={{result.id}}>
+                </div>
+                <div>
+                    <label for='review'>Review:</label><br>
+                    <textarea rows='4' cols='60' name='review' placeholder="Enter your review"></textarea>
+                </div>
+                <br>
+                <div>
+                    <label for='rating'>Rating</label>
+                    <select name='rating'>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select> stars
+                </div>
+                <br>
+                <input type='submit' value='Click to add'>
+        </form>
+    </div>
+    {%endfor%}
+</body>
+</html>

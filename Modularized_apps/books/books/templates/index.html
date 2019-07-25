@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Books</title>
+    <link rel="stylesheet"  type='text/css' href="{{ url_for('static', filename='css/myStyle.css')}}">
+</head>
+<body>
+    <div class='login_reg_form'>
+        <h3>Registration</h3>
+        <form action='/createUser' method='POST'>
+            <label for='first_name'>First Name:</label><br>
+            <input type="text" name='first_name' placeholder="Enter first name"><br>
+            {% with errors = get_flashed_messages(category_filter=["first_name"]) %}
+            {% if errors %}
+                {% for msg in errors %}
+                    <span class='error'>{{ msg }}</span>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <br>
+            <label for='last_name'>Last Name:</label><br>
+            <input type="text" name='last_name' placeholder="Enter last name"><br>
+            {% with errors = get_flashed_messages(category_filter=["last_name"]) %}
+            {% if errors %}
+                {% for msg in errors %}
+                    <span class='error'>{{ msg }}</span>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <br>
+            <label for='email'>Email:</label><br>
+            <input type="email" name='email' placeholder="Enter email"><br>
+            {% with errors = get_flashed_messages(category_filter=["email"]) %}
+            {% if errors %}
+                {% for msg in errors %}
+                    <span class='error'>{{ msg }}</span>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <br>
+            <label for='password'>Password</label><br>
+            <input type='password' name ='password' placeholder='Enter password'><br>
+            {% with errors = get_flashed_messages(category_filter=["password"]) %}
+                {% if errors %}
+                    {% for msg in errors %}
+                        <span class='error'>{{ msg }}</span>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <br>
+            <label for='c_password'>Confirm password</label><br>
+            <input type='password' name ='c_password' placeholder='Confirm password'><br>
+            {% with errors = get_flashed_messages(category_filter=["c_password"]) %}
+                {% if errors %}
+                    {% for msg in errors %}
+                        <span class='error'>{{ msg }}</span>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <br>
+            <label for='birthday'>Birthday:</label><br>
+            <input type="date" name ='birthday' placeholder='Enter birthday'><br>
+            {% with errors = get_flashed_messages(category_filter=["birthday"]) %}
+                {% if errors %}
+                    {% for msg in errors %}
+                        <span class='error'>{{ msg }}</span>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <br>
+            <input type="hidden" name="message">
+            {% with errors = get_flashed_messages(category_filter=["message"]) %}
+                {% if errors %}
+                    {% for msg in errors %}
+                        <span class='error'>{{ msg }}</span>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <br>
+            <input class= 'button' type='submit' value='Click to register'>
+        </form>
+    </div>
+    <div class='login_reg_form'>
+        <h3>Login</h3>
+        <form action='/log_in' method='POST'>
+            <label for='log_email'>Email:</label><br>
+            <input type="text" name='log_email' placeholder="Enter email"><br>
+            {% with errors = get_flashed_messages(category_filter=["log_email"]) %}
+                {% if errors %}
+                    {% for msg in errors %}
+                        <span class='error'>{{ msg }}</span>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <br>
+            <br>
+            <label for='log_password'>Password</label><br>
+            <input type='password' name ='log_password' placeholder='Enter password'><br>
+            {% with errors = get_flashed_messages(category_filter=["log_password"]) %}
+                {% if errors %}
+                    {% for msg in errors %}
+                        <span class='error'>{{ msg }}</span>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <br>
+            <br>
+            <input class='button' type='submit' value='Click to log-in'>
+        </form>
+    </div>
+</body>
+</html>
+
+    </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Books</title>
+    <link rel="stylesheet"  type='text/css' href="{{ url_for('static', filename='css/myStyle.css')}}">
+</head>
+<body>
+    <div class='navbar'>
+        <div>
+            <h4>Coding Dojo Books</h4>
+        </div>
+        <div>
+        </div>
+        <div>
+            <a href='/books'>Home</a>
+        </div>
+        <div>
+            <a href="/logout">LOG OUT</a>
+        </div>
+    </div>
+   <div>
+    {%for result in results%}
+       <h3>User Alias: {{result.first_name}}</h3>
+       <p>Name: {{result.first_name}} {{result.last_name}}</p>
+       <p>Email: {{result.email}}</p>
+    {%endfor%}
+        <p>Total reviews: {{counts}}</p>
+        <br>
+        <br>
+        <h3>Posted reviews on the following books</h3>
+        {%for title in reviews%}
+            <a href>{{title.title}}</a><br>
+        {% endfor%}
+   </div>
+</body>
+</html>
